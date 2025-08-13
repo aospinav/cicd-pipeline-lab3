@@ -53,9 +53,9 @@ pipeline {
 
                     // Levantar nuevo contenedor
                     if (env.BRANCH_NAME == 'main') {
-                        sh "docker run -d --name ${containerName} -p 3000:3000 ${env.IMAGE_NAME}"
+                        sh "docker run -d --name ${containerName} -p ${env.HOST_PORT}:3000 ${env.IMAGE_NAME}"
                     } else {
-                        sh "docker run -d --name ${containerName} -p 3001:3000 ${env.IMAGE_NAME}"
+                        sh "docker run -d --name ${containerName} -p ${env.HOST_PORT}:3000 ${env.IMAGE_NAME}"
                     }
                 }
             }
@@ -64,10 +64,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Aplicación desplegada en http://localhost:${env.HOST_PORT}"
+            echo "Aplicación desplegada en http://localhost:${env.HOST_PORT}"
         }
         failure {
-            echo "❌ Fallo en el pipeline"
+            echo "Fallo en el pipeline"
         }
     }
 }
