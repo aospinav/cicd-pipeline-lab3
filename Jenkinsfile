@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        // Definir nombre de imagen y puerto por rama
+        // Definir nombre de imagen y puerto por rama m
         IMAGE_NAME = "${env.BRANCH_NAME == 'main' ? 'nodemain:v1.0' : 'nodedev:v1.0'}"
         CONTAINER_PORT = "${env.BRANCH_NAME == 'main' ? '3000' : '3000'}"  // app escucha en 3000
         HOST_PORT = "${env.BRANCH_NAME == 'main' ? '3000' : '3001'}"       // expuesto en host
